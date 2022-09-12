@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { BASE_URL } from "../../utils/request";
-import { Sale } from "../models/sale";
+import { Sale } from "../../models/sale";
 import NotificationButton from '../NotificationButton';
 import './styles.css';
 
