@@ -1,18 +1,18 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import NotificationButton from '../NotificationButton';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { BASE_URL } from "../../utils/request";
-import { Sale } from "../../models/sale";
-import NotificationButton from '../NotificationButton';
 import './styles.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { BASE_URL } from '../../utils/request';
+import { Sale } from '../../models/sale';
 
 function SalesCard() {
 
     const min = new Date(new Date().setDate(new Date().getDate() - 365));
     const max = new Date();
 
-    const [minDate, setMinDate] = useState(min);
+    const [minDate, SetMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
     const [sales, setSales] = useState<Sale[]>([]);
@@ -22,9 +22,10 @@ function SalesCard() {
         const dmin = minDate.toISOString().slice(0, 10);
         const dmax = maxDate.toISOString().slice(0, 10);
 
-        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`).then(response => {
-            setSales(response.data.content);
-        });
+        axios.get(`${BASE_URL}/sales?minDate=${dmin}&maxDate=${dmax}`)
+            .then(response => {
+                setSales(response.data.content);
+            });
     }, [minDate, maxDate])
 
     return (
@@ -34,7 +35,7 @@ function SalesCard() {
                 <div className="dsmeta-form-control-container">
                     <DatePicker
                         selected={minDate}
-                        onChange={(date: Date) => setMinDate(date)}
+                        onChange={(date: Date) => SetMinDate(date)}
                         className="dsmeta-form-control"
                         dateFormat="dd/MM/yyyy"
                     />
@@ -81,10 +82,13 @@ function SalesCard() {
                             )
                         })}
                     </tbody>
+
                 </table>
             </div>
+
         </div>
     )
+
 }
 
 export default SalesCard;
